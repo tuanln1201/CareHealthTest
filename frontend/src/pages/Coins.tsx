@@ -7,7 +7,11 @@ export const Coins = () => {
   const { getCurrency, currency: c } = usePrices();
 
   useEffect(() => {
-    getCurrency(id as string);
+    try {
+      getCurrency(id as string);
+    } catch (error) {
+      console.log(error)
+    }
     //eslint-disable-next-line
   }, [id]);
 
