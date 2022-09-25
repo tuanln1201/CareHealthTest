@@ -20,12 +20,16 @@ export const AllCurrencies: React.FC<AllCurrenciesProps> = ({
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-      getAllCurrencies(page, sortOption, debouncedSearchTerm);
-      setIsSearching(false);
-    } else {
-      getAllCurrencies(page, sortOption, "");
+    try {
+      if (debouncedSearchTerm) {
+        setIsSearching(true);
+        getAllCurrencies(page, sortOption, debouncedSearchTerm);
+        setIsSearching(false);
+      } else {
+        getAllCurrencies(page, sortOption, "");
+      }
+    } catch (error) {
+      console.log(error);
     }
     //eslint-disable-next-line
   }, [debouncedSearchTerm, page, sortOption]);
